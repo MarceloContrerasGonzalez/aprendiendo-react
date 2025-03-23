@@ -1,35 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { TwitterFollowCard } from './TwitterFollowCard'
 
-function App() {
-  const [count, setCount] = useState(0)
+const users = [
+    {
+        id:1,
+        name: 'Marcelo Contreras Gonzalez',
+        userName: 'Darcadian',
+        isFollowing: true
+    },
+    {
+        id:2,
+        name: 'Felipe Fernandez Morel',
+        userName: 'MatutiDark',
+        isFollowing: false
+    },
+    {
+        id:3,
+        name: 'Nicolas Cañas Arriagada',
+        userName: 'Combinao',
+        isFollowing: true
+    },
+    {
+        id:4,
+        name: 'Jordan Urzua Escudero',
+        userName: 'Jordanium101',
+        isFollowing: false
+    },
+    {
+        id:5,
+        name: 'Miguel Angel Durán',
+        userName: 'midudev',
+        isFollowing: true
+    }
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+]
+
+export function App(){
+    const formatUserName = (username) => `@${username}`
+    return(
+        <section className='App'>
+        {
+            users.map(({id,name, userName, isFollowing}) => (
+                <TwitterFollowCard key={id} formatUserName={formatUserName}  username={userName} initialIsFollowing={isFollowing}>
+                {name}
+                </TwitterFollowCard>
+            )
+            )
+        }
+            
+        </section>
+    )
 }
-
-export default App
