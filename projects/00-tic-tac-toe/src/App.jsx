@@ -8,12 +8,17 @@ import confetti from 'canvas-confetti'
 
 function App() {
 
-  /* const board = Array(9).fill(null) */
   /* creamos un estado del tablero para poder definir cada casilla y si contiene 'X' o 'O' */
-  const [board, setBoard] = useState(Array(9).fill(null))
+  const [board, setBoard] = useState(() =>{
+    const boardFromStorage = window.localStorage.getItem('board')
+    return boardFromStorage ? JSON.parse(boardFromStorage) : Array(9).fill(null)
+  })
 
   /*  ademas necesitamos un estado para saber de que jugador es el turno actualmente */
-  const [turn, setTurn] = useState(TURNS.X) /* seteamos con X para definir que la X partira jugando */
+  const [turn, setTurn] = useState(() =>{
+    const turnFromStorage = window.localStorage.getItem('turn')
+    return turnFromStorage ?? TURNS.X
+  }) /* seteamos con X para definir que la X partira jugando */
 
   const [winner, setWinner] = useState(null)
 
@@ -31,6 +36,10 @@ function App() {
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X /* Basicamente si el turno es X entonces el nuevo turno es O. si no, el nuevo turno es X */
     setTurn(newTurn)
 
+    //guardamos partida con local storage
+    window.localStorage.setItem('board', JSON.stringify(newBoard))
+    window.localStorage.setItem('turn', newTurn)
+
     //revisamos si hay ganador
     const newWinner = checkWinnerFrom(newBoard)
     if (newWinner){
@@ -46,6 +55,8 @@ function App() {
     setBoard(Array(9).fill(null))
     setTurn(TURNS.X)
     setWinner(null)
+    window.localStorage.removeItem('board')
+    window.localStorage.removeItem('turn')
   }
 
   
