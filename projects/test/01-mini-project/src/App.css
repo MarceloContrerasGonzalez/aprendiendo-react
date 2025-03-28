@@ -1,0 +1,74 @@
+.base{
+  text-align: center;
+  margin: auto;
+  padding-bottom: 20px;
+  background-color: rgb(59, 59, 59);
+  width: 90%;
+  border-radius: 15px;
+}
+
+.input-base{
+  background-color: rgb(46, 46, 46);
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 250px;
+  height: 30px;
+  border-radius: 100px;
+  padding-left: 10px;
+}
+
+.buttons-base{
+  border-radius: 100px;
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.buttons-base:hover{
+  background-color: rgb(46, 46, 46);
+}
+
+.task-list {
+  display: grid;
+  gap: 10px;
+}
+
+.task-item {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  align-items: center;
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+.taskindex {
+  text-align: center;
+}
+
+.button-container {
+  text-align: right;
+  cursor: pointer;
+  border-radius: 100px;
+  width: 100px;
+  height: 30px;
+  text-align: center;
+}
+
+.button-container:hover{
+  background-color: rgb(46, 46, 46);
+}
+
+.task{
+  text-align: start;
+  word-wrap: break-word;
+}
+
+@media (max-width: 600px) {
+  .input-base {
+    width: 200px;
+  }
+
+  .task-item {
+    grid-template-columns: 1fr; /* Hacer que los elementos se apilen verticalmente en pantallas pequeñas */
+  }
+}
